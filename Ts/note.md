@@ -1,3 +1,48 @@
+## Test postmen cho login
+
+```js
+pm.test("Login thành công", function () {
+  pm.response.to.have.status(200);
+
+  const responseJson = pm.response.json();
+
+  pm.environment.set("access_token", responseJson.data.access_token);
+
+  pm.environment.set("refresh_token", responseJson.data.refresh_token);
+});
+```
+
+## Test postmen cho refresh token
+
+```js
+pm.test("Set thành công access_token", function () {
+  pm.response.to.have.status(200);
+
+  const responseJson = pm.response.json();
+
+  pm.environment.set("access_token", responseJson.data.access_token);
+});
+```
+
+## Test postmen cho get profile
+
+```js
+pm.test("Lấy profile thành công", function () {
+  pm.response.to.have.status(200);
+});
+```
+
+## Test postmen cho get products
+
+```js
+pm.test("Lấy products thành công", function () {
+  pm.response.to.have.status(200);
+});
+```
+
+config các hàm đơn giản đăng nhập lấy thông tin và refreshtoken
+
+```js
 //---------------------------------------destructuring và rest parameter-------------------------------
 
 // //-------------------destructuring với object
@@ -173,7 +218,8 @@
 // xóa tất cả localstorage
 // sessionStorage.clear();
 
-//cookie
+ ### luồng tự động refreshtoken cơ bản
+
 class http {
   contuctor() {
     this.instance = axios.create({
@@ -202,7 +248,7 @@ this.refresh_token_request=null
                                   return  this.instance(e.reponse.config)//gọi lại api vừa rồi hàm của axios
                   })
       } return Promise.reject(e)}
-   
+
     );
   }
   get(url) {
@@ -267,3 +313,10 @@ document
         })
     );
   });
+
+
+
+
+
+
+```
